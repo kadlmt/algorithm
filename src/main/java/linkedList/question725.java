@@ -1,5 +1,7 @@
 package linkedList;
 
+import java.util.Stack;
+
 /**
  * @author ：liumt
  * @date ：Created in 2020/8/20 23:30
