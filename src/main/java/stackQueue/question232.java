@@ -5,7 +5,7 @@ import java.util.Stack;
 /**
  * @author ：liumt
  * @date ：Created in 2020/8/21 0:06
- * @description：
+ * @description：用栈实现队列
  * @modified By：
  * @version: 1.1
  */
