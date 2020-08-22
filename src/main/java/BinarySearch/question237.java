@@ -44,12 +44,26 @@ public class question237 {
     /*
      * @Author liumt
      * @Description 快慢指针,了解龟兔赛跑算法
+     * 我们对nums[] 数组建图，由于存在的重复的数字target
+     * 这个位置一定有起码两条指向它的边，
+     * 因此整张图一定存在环，且我们要找到的target
+     * 就是这个环的入口
      * @Date 0:12 2020/8/23
      * @Param [nums]
      * @return int
      **/
     public int findDuplicate2(int[] nums) {
-
-        return 0;
+        int slow = 0;
+        int fast = 0;
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while(slow != fast);
+        slow = 0;
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
     }
 }
