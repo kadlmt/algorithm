@@ -48,4 +48,9 @@ public class question680 {
         }
         return true;
     }
+
+    public static void main(String[] args) {
+        System.out.println(15 & 1);
+        System.out.println(15 % 2);
+    }
 }
