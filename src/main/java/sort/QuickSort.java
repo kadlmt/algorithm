@@ -1,5 +1,7 @@
 package sort;
 
+import java.util.Arrays;
+
 /**
  * @author ：liumt
  * @date ：Created in 2020/8/17 23:31
@@ -13,31 +15,63 @@ package sort;
  * @version: 1.1
  */
 public class QuickSort {
-    public int[] quicklysort( int[] nums) {
-        sort(nums, 0, nums.length);
-        return nums;
+    public static void quicklysort(int[] nums, int startIndex, int endIndex) {
+        //递归结束条件
+        if(startIndex >= endIndex) return ;
+        //获取基准元素
+        int pivotIndex = partition2(nums, startIndex, endIndex);
+        //根据基准元素,进行分区递归排序
+        quicklysort(nums, startIndex, pivotIndex - 1);
+        quicklysort(nums, pivotIndex + 1, endIndex);
     }
 
-    public void sort(int[] nums, int left, int right){
-        if(left >= right) return;
-        int start = left;
-        int end = right;
-        int flag = nums[left];
-        while(left < right){
-            while(left < right && nums[left] < flag){
-                left++;
-            }
-            while(left < right && nums[right] > flag){
+    //双边循环法
+    public static int partition(int[] nums, int startIndex, int endIndex){
+        int pivot = nums[startIndex];
+        int left = startIndex;
+        int right = endIndex;
+        while(left != right){
+            //先移动右指针
+            while(left < right && nums[right] >= pivot){
                 right--;
             }
-            int temp = nums[left];
-            nums[left] = nums[right];
-            nums[right] = temp;
+            //再移动左指针
+            while(left < right && nums[left] <= pivot){
+                left++;
+            }
+            //交换左右指针
+            if(left < right){
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+            }
         }
-        int temp1 = nums[left - 1];
-        nums[left - 1] = nums[start];
-        nums[start] = temp1;
-        sort(nums, start, left - 1);
-        sort(nums, left, end);
+        //交换pivot和重合指针
+        nums[startIndex] = nums[left];
+        nums[left] = pivot;
+        return left;
+    }
+
+    //单边循环
+    public static int partition2(int[] nums, int startIndex, int endIndex){
+        int pivot = nums[startIndex];
+        int mark = startIndex;
+        for(int i = startIndex + 1; i <= endIndex; i++){
+            while(nums[i] < pivot){
+                mark++;
+                int temp = nums[mark];
+                nums[mark] = nums[i];
+                nums[i] = temp;
+            }
+        }
+        nums[startIndex] = nums[mark];
+        nums[mark] = pivot;
+        return mark;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[] {4,4,6,5,3,2,8,1};
+        quicklysort(arr, 0, arr.length-1);
+        System.out.println(Arrays.toString(arr));
     }
 }
