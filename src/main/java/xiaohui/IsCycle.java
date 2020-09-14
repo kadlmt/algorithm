@@ -5,7 +5,7 @@ import linkedList.question707;
 /**
  * @author ：liumt
  * @date ：Created in 2020/9/14 10:13
- * @description：判断链表是否有环
+ * @description：判断链表是否有环,求环的长度
  * @modified By：
  * @version: 1.1
  */
@@ -20,7 +20,7 @@ public class IsCycle {
 
     /**
      * @Author liumt
-     * @Description 基于快慢指针,如果有环,一定会相遇
+     * @Description 判断链表是否有环,基于快慢指针,如果有环,一定会相遇
      * @Date 10:58 2020/9/14
      * @Param [node]
      * @return void
@@ -38,6 +38,32 @@ public class IsCycle {
         return false;
     }
 
+    /**
+     * @Author liumt
+     * @Description 求环的长度
+     * @Date 11:18 2020/9/14
+     * @Param [node]
+     * @return int
+     **/
+    public static int cycleLength(Node node){
+        Node fast = node;
+        Node lower = node;
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            lower = lower.next;
+            if(fast == lower){
+                int count = 1;
+                lower = lower.next;
+                while(fast != lower){
+                    lower = lower.next;
+                    count++;
+                }
+                return count;
+            }
+        }
+        return 0;
+    }
+
     public static void main(String[] args) {
         Node node1 = new Node(5);
         Node node2 = new Node(3);
@@ -50,5 +76,6 @@ public class IsCycle {
         node4.next = node5;
         node5.next = node2;
         System.out.println(isCycle(node1));
+        System.out.println(cycleLength(node1));
     }
 }
