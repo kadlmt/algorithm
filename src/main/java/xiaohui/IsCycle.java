@@ -40,7 +40,8 @@ public class IsCycle {
 
     /**
      * @Author liumt
-     * @Description 求环的长度
+     * @Description 求环的长度,快慢指针第一次相遇后,快指针不动,慢指针继续移动
+     * 下一次相遇,慢指针走的步数就是环的商都
      * @Date 11:18 2020/9/14
      * @Param [node]
      * @return int
