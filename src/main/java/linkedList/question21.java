@@ -8,7 +8,7 @@ package linkedList;
  * @version: 1.1
  */
 public class question21 {
-    /*
+    /**
      * @Author liumt
      * @Description prev总是指向小的节点,然后小的节点对应的链表的指针后移
      * 当某一个指针为空,直接把不为空的指针的链表,加到prev上
@@ -17,18 +17,21 @@ public class question21 {
      * @return linkedList.ListNode
      **/
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        //定义一个假头
         ListNode head = new ListNode(-1);
         ListNode prev = head;
+        //如果都不为空,比较大小
         while(l1 != null && l2 != null){
-            if(l1.val <= l2.val){
-                prev.next = l1;
-                l1 = l1.next;
-            } else{
+            if(l1.val > l2.val){
                 prev.next = l2;
                 l2 = l2.next;
+            } else{
+                prev.next = l1;
+                l1 = l1.next;
             }
             prev = prev.next;
         }
+        //如果有一个为空,则吧不为空的直接跟在链表后面
         if(l1 != null) prev.next = l1;
         if(l2 != null) prev.next = l2;
         return head.next;
