@@ -30,7 +30,7 @@ public class BucketSort {
         }
         //遍历数组,把元素放入桶中
         for(int i = 0; i < array.length; i++){
-            int num = (int)((max - min) / d);
+            int num = (int)((array[i] - min) * (bucketNum - 1) / d);
             bucketList.get(num).add(array[i]);
         }
         //对每个桶内部进行排序
