@@ -45,11 +45,15 @@ public class LRUCache {
             }
         } else {
             //节点存在
+            node.value = value;
+            refreshNode(node);
         }
     }
 
     public void remove(String key){
-
+        Node node = hashMap.get(key);
+        deleteNode(node);
+        hashMap.remove(key);
     }
 
     /**
