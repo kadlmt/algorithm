@@ -14,10 +14,10 @@ import java.util.Stack;
  * @version: 1.1
  */
 public class question496 {
-    /*
+    /**
      * @Author liumt
      * @Description 维护一个单调栈
-     * 我们只需要找出nums2中每个元素对应的下一个最大元素
+     * 我们只需要找出nums2中每个元素对应的下一个最大元素,放入hashmap
      * @Date 23:55 2020/8/21
      * @Param [nums1, nums2]
      * @return int[]
@@ -25,18 +25,19 @@ public class question496 {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         Stack<Integer> stack = new Stack<>();
         Map<Integer, Integer> hashMap = new HashMap<>();
-        int[] res = new int[nums1.length];
-        for(int i = 0; i < nums2.length; i++){
-            while(!stack.isEmpty() && nums2[i] > stack.peek())
-                hashMap.put(stack.pop(), nums2[i]);
-            stack.push(nums2[i]);
+        for(int num: nums2){
+            while(!stack.isEmpty() && num > stack.peek()){
+                hashMap.put(stack.pop(), num);
+            }
+            stack.push(num);
         }
         while(!stack.isEmpty()){
             hashMap.put(stack.pop(), -1);
         }
+        int[] result = new int[nums1.length];
         for(int i = 0; i < nums1.length; i++){
-            res[i] = hashMap.get(nums1[i]);
+            result[i] = hashMap.get(nums1[i]);
         }
-        return res;
+        return result;
     }
 }
