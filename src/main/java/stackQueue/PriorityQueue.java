@@ -17,7 +17,7 @@ public class PriorityQueue {
         array = new int[32];
     }
 
-    /*
+    /**
      * @Author liumt
      * @Description 入队操作
      * @Date 10:58 2020/9/12
@@ -32,7 +32,7 @@ public class PriorityQueue {
         upAdjust();
     }
 
-    /*
+    /**
      * @Author liumt
      * @Description 出队操作
      * @Date 10:59 2020/9/12
@@ -50,7 +50,7 @@ public class PriorityQueue {
         return head;
     }
 
-    /*
+    /**
      * @Author liumt
      * @Description 上浮操作
      * @Date 10:59 2020/9/12
@@ -69,7 +69,7 @@ public class PriorityQueue {
         array[childIndex] = temp;
     }
 
-    /*
+    /**
      * @Author liumt
      * @Description 下沉操作
      * @Date 11:02 2020/9/12
@@ -95,7 +95,7 @@ public class PriorityQueue {
         array[parentIndex] = temp;
     }
 
-    /*
+    /**
      * @Author liumt
      * @Description 扩容
      * @Date 11:04 2020/9/12
@@ -103,7 +103,7 @@ public class PriorityQueue {
      * @return void
      **/
     public void resize(){
-        this.array = Arrays.copyOf(array, size >> 2);
+        this.array = Arrays.copyOf(array, size + (size >> 2));
     }
 
     public static void main(String[] args) throws Exception {

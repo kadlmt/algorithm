@@ -25,7 +25,7 @@ public class MyBitMap {
     }
 
     public int getWordIndex(int size){
-        return (size - 1) >>> 6 + 1;
+        return (size - 1) >>> 6;
     }
 
     /**
@@ -56,5 +56,9 @@ public class MyBitMap {
         }
         int wordIndex = getWordIndex(bitIndex);
         words[wordIndex] |= 1L << bitIndex;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(1L << 127);
     }
 }
