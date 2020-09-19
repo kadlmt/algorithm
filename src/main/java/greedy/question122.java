@@ -35,4 +35,21 @@ public class question122 {
         }
         return maxProfit;
     }
+
+    /**
+     * @Author liumt
+     * @Description 只要和前一天对比在上涨,就前一天买进,今天卖出
+     * 反之不买卖
+     * @Date 10:31 2020/9/19
+     * @Param [prices]
+     * @return int
+     **/
+    public int maxProfit2(int[] prices) {
+        int maxProfit = 0;
+        for(int i = 1; i < prices.length; i++){
+            int temp = prices[i] - prices[i - 1];
+            if(temp > 0) maxProfit += temp;
+        }
+        return maxProfit;
+    }
 }
