@@ -33,4 +33,23 @@ public class quesion1 {
         }
         return null;
     }
+
+    /**
+     * @Author liumt
+     * @Description 一遍hash表
+     * @Date 16:23 2020/9/30
+     * @Param [nums, target]
+     * @return int[]
+     **/
+    public int[] twoSum2(int[] nums, int target) {
+        Map<Integer, Integer> hashMap = new HashMap<>();
+        for(int i = 0; i < nums.length; i++){
+            int temp = target - nums[i];
+            if(hashMap.containsKey(temp)){
+                return new int[]{i, hashMap.get(temp)};
+            }
+            hashMap.put(nums[i], i);
+        }
+        return null;
+    }
 }
