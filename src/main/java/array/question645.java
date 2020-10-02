@@ -24,18 +24,19 @@ public class question645 {
      **/
     public int[] findErrorNums(int[] nums) {
         Map<Integer, Integer> hashMap = new HashMap<>();
-        int dup = 0;
-        int miss = 0;
+        int a = 0;
+        int b = 0;
         for(int i = 0; i < nums.length; i++){
-            hashMap.put(nums[i], hashMap.getOrDefault(nums[i], 0) + 1);
+            if(hashMap.containsKey(nums[i])){
+                a = nums[i];
+            }
+            hashMap.put(nums[i], 1);
         }
         for(int i = 1; i <= nums.length; i++){
-            if(hashMap.containsKey(i)){
-                if(hashMap.get(i) == 2) dup = i;
-            } else{
-                miss = i;
+            if(!hashMap.containsKey(i)){
+                b = i;
             }
         }
-        return new int[]{dup, miss};
+        return new int[]{a, b};
     }
 }
