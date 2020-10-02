@@ -7,7 +7,7 @@ package array;
  * @modified By：
  * @version: 1.1
  */
-public class qustion189 {
+public class question189 {
     /*
      * @Author liumt
      * @Description 使用额外的数组
