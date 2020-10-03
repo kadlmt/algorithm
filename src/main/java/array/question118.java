@@ -20,16 +20,16 @@ public class question118 {
      **/
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> result = new ArrayList<>();
-        if(numRows == 0)
-            return result;
-        result.add(new ArrayList<>());
-        result.get(0).add(1);
+        if(numRows <= 0) return result;
+        List<Integer> list1 = new ArrayList<>();
+        list1.add(1);
+        result.add(list1);
         for(int i = 1; i < numRows; i++){
+            List<Integer> pre = result.get(i - 1);
             List<Integer> cur = new ArrayList<>();
-            List<Integer> pre = result.get(i -1);
             cur.add(1);
-            for(int j = 1; j < i; j++){
-                cur.add(pre.get(j - 1) + pre.get(j));
+            for(int j = 1; j < pre.size(); j++){
+                cur.add(pre.get(j) + pre.get(j - 1));
             }
             cur.add(1);
             result.add(cur);
