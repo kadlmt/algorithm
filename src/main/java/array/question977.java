@@ -44,4 +44,28 @@ public class question977 {
         }
         return result;
     }
+
+    /**
+     * @Author liumt
+     * @Description 左右指针,left + right < 0说明left绝对值大,放入结果数组末尾
+     * 左指针右移,反之right绝对值大,放入结果数组,右指针左移
+     * @Date 19:48 2020/10/3
+     * @Param [A]
+     * @return int[]
+     **/
+    public int[] sortedSquares2(int[] A) {
+        int left = 0;
+        int right = A.length - 1;
+        int[] res = new int[A.length];
+        for(int i = A.length - 1; i >= 0; i--){
+            if(A[left] + A[right] < 0){
+                res[i] = A[left] * A[left];
+                left++;
+            } else{
+                res[i] = A[right] * A[right];
+                right--;
+            }
+        }
+        return res;
+    }
 }
