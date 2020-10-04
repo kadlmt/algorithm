@@ -20,20 +20,55 @@ public class question238 {
      **/
     public int[] productExceptSelf(int[] nums) {
         int length = nums.length;
-        int[] result = new int[length];
         int[] left = new int[length];
         int[] right = new int[length];
-
-        left[0] = 1;
-        for(int i = 1;i < nums.length; i++){
-            left[i] =  nums[i - 1] * left[i - 1];
+        int[] result = new int[length];
+        left[0] = nums[0];
+        right[length - 1] = nums[length - 1];
+        for(int i = 1; i < length; i++){
+            left[i] = left[i - 1] * nums[i];
         }
-        right[length - 1] = 1;
         for(int i = length - 2; i >= 0; i--){
-            right[i] = nums[i + 1] * right[i + 1];
+            right[i] = right[i + 1] * nums[i];
         }
         for(int i = 0; i < length; i++){
-            result[i] = left[i] * right[i];
+            if(i == 0){
+                result[i] = right[i + 1];
+                continue;
+            }
+            if(i == length - 1){
+                result[i] = left[i - 1];
+                continue;
+            }
+            result[i] = left[i - 1] * right[i + 1];
+        }
+        return result;
+    }
+
+    /**
+     * @Author liumt
+     * @Description 不借助额外的空间
+     * @Date 10:44 2020/10/4
+     * @Param [nums]
+     * @return int[]
+     **/
+    public int[] productExceptSelf2(int[] nums) {
+        int length = nums.length;
+        int result[] = new int[length];
+        result[0] = nums[0];
+        //先使用结果数组,存放左边的乘积
+        for(int i = 1; i < length; i++){
+            result[i] = result[i - 1] * nums[i];
+        }
+        int R = 1;
+        //使用左边的乘积*右边的乘积放在结果数组
+        for(int i = length - 1; i >= 0; i--){
+            if(i > 0){
+                result[i] = result[i - 1] * R;
+            } else{
+                result[i] = R;
+            }
+            R *= nums[i];
         }
         return result;
     }
