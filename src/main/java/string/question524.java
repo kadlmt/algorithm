@@ -12,7 +12,7 @@ import java.util.List;
  * @version: 1.1
  */
 public class question524 {
-    /*
+    /**
      * @Author liumt
      * @Description 使用双指针的解法,不是最优解
      * @Date 23:37 2020/8/9
@@ -20,16 +20,31 @@ public class question524 {
      * @return java.lang.String
      **/
     public String findLongestWord(String s, List<String> d) {
-        String str = "";
-        for(String sstr: d){
-            for(int i = 0, j = 0; i < s.length() && j < sstr.length() ; i++){
-                if(s.charAt(i) == sstr.charAt(j)) j++;
-                if(j == sstr.length()){
-                    if(sstr.length()>str.length()||
-                            (sstr.length()==str.length()&&str.compareTo(sstr)>0)) str = sstr;
+        String result = "";
+        for(String ds: d){
+            int l1 = 0;
+            int l2 = 0;
+            while(l1 < s.length() && l2 < ds.length()){
+                int c1 = s.charAt(l1);
+                int c2 = ds.charAt(l2);
+                if(c1 == c2){
+                    l1++;
+                    l2++;
+                }else{
+                    l1++;
+                }
+            }
+            if(l2 == ds.length()){
+                if("".equals(result)){
+                    result = ds;
+                }
+                else if(result.length() == ds.length()){
+                    result = result.compareTo(ds) > 0?ds: result;
+                } else{
+                    result = result.length() > ds.length()?result: ds;
                 }
             }
         }
-        return str;
+        return result;
     }
 }
