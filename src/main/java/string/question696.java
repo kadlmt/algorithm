@@ -37,4 +37,28 @@ public class question696 {
         }
         return result;
     }
+
+    /**
+     * @Author liumt
+     * @Description 不借用list,使用last来记录上一次的连续字符数
+     * @Date 18:48 2020/10/7
+     * @Param [s]
+     * @return int
+     **/
+    public int countBinarySubstrings2(String s) {
+        int result = 0;
+        int left = 0;
+        int last = 0;
+        while(left < s.length()){
+            char c = s.charAt(left);
+            int count = 0;
+            while(left < s.length() && s.charAt(left) == c){
+                left++;
+                count++;
+            }
+            result += Math.min(last, count);
+            last = count;
+        }
+        return result;
+    }
 }
