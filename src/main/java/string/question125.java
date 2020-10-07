@@ -35,4 +35,26 @@ public class question125 {
         }
         return true;
     }
+
+    /**
+     * @Author liumt
+     * @Description 原地双指针
+     * @Date 8:46 2020/10/7
+     * @Param [s]
+     * @return boolean
+     **/
+    public boolean isPalindrome2(String s) {
+        int left = 0;
+        int right = s.length() - 1;
+        while(left < right){
+            while(left < right && !Character.isLetterOrDigit(s.charAt(left))) left++;
+            while(left < right && !Character.isLetterOrDigit(s.charAt(right))) right--;
+            if(Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))){
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
 }
