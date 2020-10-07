@@ -56,4 +56,30 @@ public class question557 {
         }
         return sb.toString();
     }
+
+    /**
+     * @Author liumt
+     * @Description 找到每一个单词的起止位置
+     * @Date 19:34 2020/10/7
+     * @Param [s]
+     * @return java.lang.String
+     **/
+    public String reverseWords2(String s) {
+        int i = 0;
+        int length = s.length();
+        StringBuffer sb =new StringBuffer();
+        while(i < length){
+            int start = i;
+            while(i < length && s.charAt(i) != ' ') i++;
+            int end = i - 1;
+            while(start <= end){
+                sb.append(s.charAt(end--));
+            }
+            while (i < length && s.charAt(i) == ' ') {
+                i++;
+                sb.append(' ');
+            }
+        }
+        return sb.toString();
+    }
 }
