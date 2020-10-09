@@ -16,15 +16,12 @@ public class question141 {
      * @return boolean
      **/
     public boolean hasCycle(ListNode head) {
-        if(head == null) return false;
-        ListNode lower = head;
+        ListNode slow = head;
         ListNode fast = head;
         while(fast != null && fast.next != null){
+            slow = slow.next;
             fast = fast.next.next;
-            lower = lower.next;
-            if(fast == lower){
-                return true;
-            }
+            if(slow == fast) return true;
         }
         return false;
     }

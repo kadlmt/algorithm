@@ -24,11 +24,37 @@ public class question24 {
      * @return linkedList.question24.ListNode
      **/
     public ListNode swapPairs(ListNode head) {
-        if(head == null || head.next == null)
-            return head;
-        ListNode next = head.next;
-        head.next = swapPairs(next.next);
-        next.next = head;
-        return next;
+        if(head == null || head.next == null) return head;
+        ListNode firstNode = head;
+        ListNode secondNode = head.next;
+        firstNode.next = swapPairs(secondNode.next);
+        secondNode.next = firstNode;
+        return secondNode;
+    }
+
+    /**
+     * @Author liumt
+     * @Description 迭代
+     * @Date 15:29 2020/10/8
+     * @Param [head]
+     * @return linkedList.question24.ListNode
+     **/
+    public ListNode swapPairs2(ListNode head) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode prevNode = dummy;
+        while(head != null && head.next != null){
+            ListNode firstNode = head;
+            ListNode secondNode = head.next;
+            //交换
+            ListNode nextNode = secondNode.next;
+            prevNode.next = secondNode;
+            secondNode.next = firstNode;
+            firstNode.next = nextNode;
+            //新的head
+            head = nextNode;
+            prevNode = firstNode;
+        }
+        return dummy.next;
     }
 }
