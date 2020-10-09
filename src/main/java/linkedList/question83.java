@@ -9,11 +9,15 @@ package linkedList;
  */
 public class question83 {
     public ListNode deleteDuplicates(ListNode head) {
-        ListNode cur = head;
-        while(cur != null && cur.next != null){
-            if(cur.val == cur.next.val){
-                cur.next = cur.next.next;
-            }else{
+        if(head == null) return null;
+        ListNode prev = head;
+        ListNode cur = head.next;
+        while(cur != null){
+            if(prev.val == cur.val){
+                prev.next = cur.next;
+                cur = cur.next;
+            } else{
+                prev = cur;
                 cur = cur.next;
             }
         }
