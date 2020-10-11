@@ -3,7 +3,7 @@ package linkedList;
 /**
  * @author ：liumt
  * @date ：Created in 2020/10/11 19:00
- * @description：排序链表
+ * @description：排序链表(递归和迭代解法)
  * @modified By：
  * @version: 1.1
  */
