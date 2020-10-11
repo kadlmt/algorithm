@@ -17,23 +17,25 @@ public class question21 {
      * @return linkedList.ListNode
      **/
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        //定义一个假头
-        ListNode head = new ListNode(-1);
-        ListNode prev = head;
-        //如果都不为空,比较大小
-        while(l1 != null && l2 != null){
-            if(l1.val > l2.val){
-                prev.next = l2;
-                l2 = l2.next;
-            } else{
-                prev.next = l1;
-                l1 = l1.next;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = l1;
+        ListNode prev = dummy;
+        ListNode cur1 = l1;
+        ListNode cur2 = l2;
+        while(cur1 != null && cur2 != null){
+            //如果cur1小于cur2,指针的后移
+            if(cur1.val <= cur2.val){
+                cur1 = cur1.next;
+                prev = prev.next;
+            } else{//反之,cur2插入prev后面,cur1前面
+                ListNode temp = cur2.next;
+                cur2.next = cur1;
+                prev.next = cur2;
+                prev = prev.next;
+                cur2 = temp;
             }
-            prev = prev.next;
         }
-        //如果有一个为空,则吧不为空的直接跟在链表后面
-        if(l1 != null) prev.next = l1;
-        if(l2 != null) prev.next = l2;
-        return head.next;
+        if(cur2 != null) prev.next = cur2;
+        return dummy.next;
     }
 }
