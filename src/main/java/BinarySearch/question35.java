@@ -37,4 +37,24 @@ public class question35 {
         }
         return left;
     }
+
+    /**
+     * @Author liumt
+     * @Description 解法同上,压缩行
+     * @Date 19:56 2020/10/13
+     * @Param [nums, target]
+     * @return int
+     **/
+    public int searchInsert2(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        while(left <= right){
+            //防止Integer溢出
+            int mid = left + ((right - left) >> 1);
+            if(target == nums[mid]) return mid;
+            if(target > nums[mid]) left = mid + 1;
+            else right = mid - 1;
+        }
+        return left;
+    }
 }

@@ -10,7 +10,7 @@ package BinarySearch;
  * @modified By：
  * @version: 1.1
  */
-public class question237 {
+public class question287 {
     /*
      * @Author liumt
      * @Description 二分法
