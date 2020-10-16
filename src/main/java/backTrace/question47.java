@@ -11,8 +11,10 @@ import java.util.*;
  */
 public class question47 {
     List<List<Integer>> res = new ArrayList<>();
+    //访问过的元素
     boolean[] vis;
     public List<List<Integer>> permuteUnique(int[] nums) {
+        //已选择
         List<Integer> trace = new ArrayList<>();
         vis = new boolean[nums.length];
         Arrays.sort(nums);
@@ -26,6 +28,8 @@ public class question47 {
             return;
         }
         for(int i = 0; i < nums.length; i++){
+            //判断重复,剪枝操作,画图理解
+            //nums[i - 1]没使用过,nums[i]和nums[i - 1]相等,搜索结果肯定相等,需要剪枝
             if(vis[i] || (i > 0 && nums[i] == nums[i - 1] && !vis[i - 1])) continue;
             vis[i] = true;
             trace.add(nums[i]);
