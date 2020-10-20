@@ -19,25 +19,27 @@ public class question155 {
      * @return
      **/
     class MinStack {
-        private Stack<Integer> stack;
-        private Stack<Integer> minStack;
+        Stack<Integer> stack;
+        Stack<Integer> minStack;
         /** initialize your data structure here. */
         public MinStack() {
-            stack = new Stack();
-            minStack = new Stack();
+            stack = new Stack<>();
+            minStack = new Stack<>();
+            minStack.push(Integer.MAX_VALUE);
         }
 
         public void push(int x) {
             stack.push(x);
-            if(minStack.isEmpty() || x <= minStack.peek()){
+            if(x < minStack.peek()){
                 minStack.push(x);
+            } else {
+                minStack.push(minStack.peek());
             }
         }
 
         public void pop() {
-            if(stack.pop().equals(minStack.peek())){
-                minStack.pop();
-            }
+            stack.pop();
+            minStack.pop();
         }
 
         public int top() {
