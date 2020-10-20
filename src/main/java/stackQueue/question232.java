@@ -19,48 +19,48 @@ public class question232 {
      * @return
      **/
     public class MyQueue{
-        private Stack<Integer> s1;
-        private Stack<Integer> s2;
+        Stack<Integer> stack1;
+        Stack<Integer> stack2;
         /** Initialize your data structure here. */
         public MyQueue() {
-            s1 = new Stack<>();
-            s2 = new Stack<>();
+            stack1 = new Stack<>();
+            stack2 = new Stack<>();
         }
 
         /** Push element x to the back of queue. */
         public void push(int x) {
-            s1.push(x);
-        }
-
-        public void shift(){
-            if(s2.empty()){
-                while(!s1.empty()){
-                    s2.push(s1.pop());
-                }
-            }
+            stack1.push(x);
         }
 
         /** Removes the element from in front of queue and returns that element. */
         public int pop() {
-            shift();
-            if(!s2.empty()){
-                return s2.pop();
+            if(!stack2.isEmpty()){
+                return stack2.pop();
+            }else{
+                unshift();
+                return stack2.pop();
             }
-            throw new RuntimeException("error");
+        }
+
+        public void unshift(){
+            while(!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+            }
         }
 
         /** Get the front element. */
         public int peek() {
-            shift();
-            if(!s2.empty()){
-                return s2.peek();
+            if(!stack2.isEmpty()){
+                return stack2.peek();
+            }else{
+                unshift();
+                return stack2.peek();
             }
-            throw new RuntimeException("error");
         }
 
         /** Returns whether the queue is empty. */
         public boolean empty() {
-            return s1.empty() && s2.empty();
+            return stack1.isEmpty() && stack2.isEmpty();
         }
     }
 }
