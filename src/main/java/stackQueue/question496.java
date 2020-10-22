@@ -23,13 +23,13 @@ public class question496 {
      * @return int[]
      **/
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-        Stack<Integer> stack = new Stack<>();
         Map<Integer, Integer> hashMap = new HashMap<>();
-        for(int num: nums2){
-            while(!stack.isEmpty() && num > stack.peek()){
-                hashMap.put(stack.pop(), num);
+        Stack<Integer> stack = new Stack<>();
+        for(int i = 0; i < nums2.length; i++){
+            while(!stack.isEmpty() && nums2[i] > stack.peek()){
+                hashMap.put(stack.pop(), nums2[i]);
             }
-            stack.push(num);
+            stack.push(nums2[i]);
         }
         while(!stack.isEmpty()){
             hashMap.put(stack.pop(), -1);
