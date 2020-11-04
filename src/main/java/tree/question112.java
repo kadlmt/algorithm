@@ -24,7 +24,9 @@ public class question112 {
         if(root.left == null && root.right == null){
             return sum == root.val;
         }
-        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+        boolean left = hasPathSum(root.left, sum - root.val);
+        boolean right = hasPathSum(root.right, sum - root.val);
+        return left || right;
     }
 
     /*
