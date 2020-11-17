@@ -10,7 +10,9 @@ package tree;
 public class question617 {
     /*
      * @Author liumt
-     * @Description 递归
+     * @Description dfs
+     * 终止条件: left or right为null
+     * 返回结果: 合并后的node
      * @Date 23:42 2020/8/26
      * @Param [t1, t2]
      * @return tree.TreeNode
