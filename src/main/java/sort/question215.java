@@ -1,4 +1,4 @@
-package introductionAlgorithm.sort;
+package sort;
 
 /**
  * @author ：liumt
