@@ -14,7 +14,7 @@ public class QuickSort7_3 {
 
     public static void quickSort(int[] array, int p, int r) {
         if (p < r) {
-            int q = partition(array, p, r);
+            int q = randomPartition(array, p, r);
             quickSort(array, p, q - 1);
             quickSort(array, q + 1, r);
         }
@@ -23,7 +23,7 @@ public class QuickSort7_3 {
 
     public static int randomPartition(int[] array, int p, int r) {
         Random random = new Random();
-        int i = random.nextInt() * (r - p + 1) + p;
+        int i = random.nextInt(r - p) + p;
         int temp = array[i];
         array[i] = array[r];
         array[r] = temp;
