@@ -37,4 +37,26 @@ public class question64 {
         }
         return dp[rows - 1][coloums - 1];
     }
+
+    /**
+     * 空间优化
+     */
+    public int minPathSum2(int[][] grid) {
+        int row = grid.length;
+        int column = grid[0].length;
+        int[] dp = new int[column];
+        dp[0] = grid[0][0];
+        for (int i = 1; i < column; i++) {
+            dp[i] = dp[i - 1] + grid[0][i];
+        }
+        for (int i = 1; i < row; i++) {
+            dp[0] = dp[0] + grid[i][0];
+            for (int j = 1; j < column; j++) {
+                int a = dp[j - 1] + grid[i][j];
+                int b = dp[j] + grid[i][j];
+                dp[j] = Math.min(a, b);
+            }
+        }
+        return dp[column - 1];
+    }
 }
