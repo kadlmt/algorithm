@@ -1,5 +1,6 @@
 package dynamicProgramming;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,13 +23,35 @@ public class question139 {
      * @Param [s, wordDict]
      * @return boolean
      **/
-    public boolean wordBreak(String s, List<String> wordDict) {
+    public static boolean wordBreak(String s, List<String> wordDict) {
         Set<String> hashSet = new HashSet<>(wordDict);
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
         for(int i = 1; i <= s.length(); i++){
             for(int j = 0; j < i; j++){
                 if(dp[j] && hashSet.contains(s.substring(j, i))){
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
+    }
+
+    public boolean wordBreak2(String s, List<String> wordDict) {
+        Set<String> hashSet = new HashSet<>();
+        int maxLength = 0;
+        for (String str: wordDict) {
+            hashSet.add(str);
+            if (str.length() > maxLength) {
+                maxLength = str.length();
+            }
+        }
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = (i - maxLength) < 0?0: (i - maxLength); j < i; j++) {
+                if (dp[j] && hashSet.contains(s.substring(j, i))) {
                     dp[i] = true;
                     break;
                 }
