@@ -3,11 +3,14 @@ package linkedList;
 /**
  * @author ：liumt
  * @date ：Created in 2020/9/15 13:07
- * @description：
+ * @description：删除倒数第n个节点
  * @modified By：
  * @version: 1.1
  */
 public class question19 {
+    /**
+     * 滑动窗口的思想
+     */
     public ListNode removeNthFromEnd(ListNode head, int n) {
         //定义一个假头
         ListNode dummy = new ListNode(-1);
